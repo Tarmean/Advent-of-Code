@@ -5,9 +5,11 @@ import Data.List (nub, intersperse, transpose, sort)
 import Control.Monad
 import qualified Data.HashSet as S
 import Data.Function
+import System.Environment
 
 main :: IO ()
-main = do
+main = do arg <- head <$> getArgs
+          let start = read arg
           printMatrix (0, start)
           let (Just solution) = search (0, start)
           mapM_ printSingle $ zip [1..] solution
@@ -19,8 +21,8 @@ type Pair = (GeneratorFloor, ChipFloor)
 type Node = (HumanFloor, [Pair])
 type Delta = (Int, Int)
 
-start :: [Pair]
-start = [(0, 0), (0, 1), (0, 1), (2, 2), (2, 2)] ++ [(0, 0), (0, 0)]
+-- start :: [Pair]
+-- start = [(0,0),(0,1),(0,1),(2,2),(2,2),(0,0),(0,0),(0,0),(0,0)]
 
 
 neighbors (human, machines) = S.fromList nodes'
