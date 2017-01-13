@@ -1,3 +1,4 @@
+module Day12 where
 import Data.Map as M
 import Control.Monad.State
 import Data.Char
